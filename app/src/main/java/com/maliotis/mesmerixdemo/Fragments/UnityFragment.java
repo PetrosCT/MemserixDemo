@@ -57,9 +57,9 @@ public class UnityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        getActivity().getWindow().takeSurface(null);
-        getActivity().setTheme(android.R.style.Theme_NoTitleBar_Fullscreen);
-        getActivity().getWindow().setFormat(PixelFormat.RGB_565);
+        //getActivity().getWindow().takeSurface(null);
+        //getActivity().setTheme(android.R.style.Theme_NoTitleBar_Fullscreen);
+        //getActivity().getWindow().setFormat(PixelFormat.RGB_565);
 
         mUnityPlayer = new UnityPlayer(getActivity());
         if (mUnityPlayer.getSettings().getBoolean("hide_status_bar", true))
@@ -73,9 +73,9 @@ public class UnityFragment extends Fragment {
             public void run() {
                 onWindowFocusChanged(true);
             }
-        },500);
+        },1000);
 
-        mUnityPlayer.UnitySendMessage("Manager", "ConnectHere", "Here is the text!");
+        UnityPlayer.UnitySendMessage("Manager", "ConnectHere", "Here is the text!");
         return mUnityPlayer.getView();
     }
 
@@ -88,7 +88,7 @@ public class UnityFragment extends Fragment {
     //Quit Unity
     @Override
     public void onDestroy() {
-        //mUnityPlayer.quit();
+        mUnityPlayer.quit();
         super.onDestroy();
     }
 
