@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.maliotis.mesmerixdemo">
 
-    <!--<uses-permission android:name="android.permission.CAMERA" />-->
-    <!--<uses-feature android:name="android.hardware.camera.ar" />-->
-
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -26,23 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-        </activity>
-        <!--<meta-data android:name="com.google.ar.core" android:value="optional" />-->
-
-        <!--<activity android:name="com.unity3d.player.UnityPlayerActivity">-->
-
-        <!--</activity>-->
-
-
-        <activity
-            android:name="com.maliotis.mesmerixdemo.UnityPlayerActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
-            android:hardwareAccelerated="false"
-            android:launchMode="singleTask"
-            android:screenOrientation="fullSensor">
-            <meta-data
-                android:name="unityplayer.UnityActivity"
-                android:value="true"/>
         </activity>
         <meta-data
             android:name="unity.tango-enable"

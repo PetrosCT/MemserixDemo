@@ -1,7 +1,6 @@
 package com.maliotis.mesmerixdemo;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.maliotis.mesmerixdemo.Fragments.UnityFragment;
 
@@ -30,17 +28,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(mRelativeLayout);
 
-        // ARCore requires camera permission to operate.
-        if (!CameraPermissionHelper.hasCameraPermission(this)) {
-            CameraPermissionHelper.requestCameraPermission(this);
-            return;
-        }
-
-
         createFragment();
-
-//        Intent intent = new Intent(this, UnityPlayerActivity.class);
-//        startActivity(intent);
 
 
     }
@@ -59,16 +47,4 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
-        if (!CameraPermissionHelper.hasCameraPermission(this)) {
-            Toast.makeText(this, "Camera permission is needed to run this application", Toast.LENGTH_LONG)
-                    .show();
-            if (!CameraPermissionHelper.shouldShowRequestPermissionRationale(this)) {
-                // Permission denied with checking "Do not ask again".
-                CameraPermissionHelper.launchPermissionSettings(this);
-            }
-            finish();
-        }
-    }
 }

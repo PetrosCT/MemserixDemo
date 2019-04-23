@@ -2,7 +2,6 @@ package com.maliotis.mesmerixdemo.Fragments;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,11 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.TextView;
-
-import com.maliotis.mesmerixdemo.R;
 import com.unity3d.player.UnityPlayer;
-import com.unity3d.player.UnityPlayerActivity;
+
+import java.util.Objects;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,14 +24,6 @@ import com.unity3d.player.UnityPlayerActivity;
  * create an instance of this fragment.
  */
 public class UnityFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -41,7 +31,7 @@ public class UnityFragment extends Fragment {
         // Required empty public constructor
     }
 
-    protected UnityPlayer mUnityPlayer;     // don't change the name of this variable; referenced from native code
+    protected UnityPlayer mUnityPlayer;
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     public static UnityFragment newInstance(int sectionNumber) {
@@ -57,13 +47,9 @@ public class UnityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //getActivity().getWindow().takeSurface(null);
-        //getActivity().setTheme(android.R.style.Theme_NoTitleBar_Fullscreen);
-        //getActivity().getWindow().setFormat(PixelFormat.RGB_565);
-
         mUnityPlayer = new UnityPlayer(getActivity());
         if (mUnityPlayer.getSettings().getBoolean("hide_status_bar", true))
-            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            Objects.requireNonNull(getActivity()).getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         initUnityPlayer();
@@ -115,13 +101,6 @@ public class UnityFragment extends Fragment {
 
     public void onWindowFocusChanged(boolean hasFocus) {
         mUnityPlayer.windowFocusChanged(hasFocus);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
